@@ -1,0 +1,19 @@
+{
+  "name": "onecall-timer",
+  "version": "0.0.1-snapshot",
+  "description": "OneCall Timer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morichan/onecall-timer.git"
+  },
+  "author": "Morichan <morichan.keisuke.mori@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Morichan/onecall-timer/issues"
+  },
+  "homepage": "https://github.com/Morichan/onecall-timer#readme",
+  "dependencies": {
+    "serverless": "^1.82.0",
+    "serverless-rust": "^0.3.8"
+  }
+}

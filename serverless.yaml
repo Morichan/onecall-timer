@@ -1,0 +1,21 @@
+service: onecall-timer
+
+
+provider:
+  name: aws
+  runtime: rust
+  memorySize: 128
+  # region: ap-northeast-1
+
+
+package:
+  individually: true
+
+
+plugins:
+  - serverless-rust
+
+
+functions:
+  onecall-timer:
+    handler: onecall-timer
