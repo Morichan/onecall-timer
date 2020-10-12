@@ -14,27 +14,24 @@ Alexaスキルによる OneCall Timer のアーキテクチャを、UMLの配置
 @startuml
 title OneCall Timer アーキテクチャ
 
-!include <aws/common>
-!include <aws/Compute/AWSLambda/AWSLambda>
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v7.0/dist
+!includeurl AWSPuml/AWSCommon.puml
+' シンプルな枠組みに変更できる
+' !includeurl AWSPuml/AWSSimplified.puml
 
-' 既存の AWSLAMBDA マクロの画像ファイルを差替えたオリジナルマクロ
-!define AWS(e_text, e_as, e_service, e_image, e_size) AWSLAMBDA(e_as, e_text, node, #000000, e_service, "none><img:e_image{scale=e_size}> <$none")
-!define AWS_Light(e_text, e_as, e_service, e_image, e_size) AWS(e_text, e_as, e_service, ./img/AWS-Architecture-Icons_PNG_20200430/PNG Light/e_image, e_size)
-
-' AWSサービス
-!define Alexa(e_text, e_as) AWS_Light(e_text, e_as, Alexa skill, Internet of Things/IoT_Alexa-skill_light-bg@4x.png, 0.3)
-!define Lambda(e_text, e_as) AWS_Light(e_text, e_as, AWS Lambda, Compute/AWS-Lambda@4x.png, 0.3)
-!define LambdaFunction(e_text, e_as) AWS_Light(e_text, e_as, Lambda Function, Compute/AWS-Lambda_Lambda-Function_light-bg@4x.png, 0.3)
-!define Dynamo(e_text, e_as) AWS_Light(e_text, e_as, DynamoDB, Database/Amazon-DynamoDB@4x.png, 0.3)
-!define Table(e_text, e_as) AWS_Light(e_text, e_as, DynamoDB Table, Database/Amazon-DynamoDB_Table_light-bg@4x.png, 0.3)
+!includeurl AWSPuml/InternetOfThings/IoTAlexaSkill.puml
+!includeurl AWSPuml/Compute/Lambda.puml
+!includeurl AWSPuml/Compute/LambdaLambdaFunction.puml
+!includeurl AWSPuml/Database/DynamoDB.puml
+!includeurl AWSPuml/Database/DynamoDBTable.puml
 
 actor User as user
-Alexa(OneCall Timer, onecall)
-Lambda(Timer Lambda, timer)
-LambdaFunction(Timer Receiver, receiver)
-LambdaFunction(Timer Attacker, attacker)
-Dynamo(User DB, user_db)
-Table(user-table, user_table)
+IoTAlexaSkill(onecall, OneCall Timer, "ex) Amazon Echo")
+Lambda(timer, Timer Lambda, Lambda)
+LambdaLambdaFunction(receiver, Timer Receiver, receive)
+LambdaLambdaFunction(attacker, Timer Attacker, attack)
+DynamoDB(user_db, User DB, DB)
+DynamoDBTable(user_table, user-table, record timer)
 
 user - onecall
 onecall - timer
